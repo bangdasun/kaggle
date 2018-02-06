@@ -1,4 +1,4 @@
-## My Competitions
+## Competitions
 
 ### Classification 
 * [Titanic passenger survival prediction](https://www.kaggle.com/c/titanic)
