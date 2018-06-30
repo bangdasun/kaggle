@@ -1,14 +1,20 @@
+## My Profile
+
+https://www.kaggle.com/bangdasun
+
 ## Competitions
 
 ### Classification 
 * [Titanic passenger survival prediction](https://www.kaggle.com/c/titanic)
 * [Instacart market basket analysis](https://www.kaggle.com/c/instacart-market-basket-analysis)
 * [Toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge)
+* [TalkingData adtracking fraud detection challenge](https://www.kaggle.com/c/talkingdata-adtracking-fraud-detection)
 
 ### Regression
 * [House price prediction - advanced regression techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
 * [New York City taxi trip duration](https://www.kaggle.com/c/nyc-taxi-trip-duration)
 * [Mercari price suggestion challenge](https://www.kaggle.com/c/mercari-price-suggestion-challenge)
+* [Avito demand prediction challenge](https://www.kaggle.com/c/avito-demand-prediction/leaderboard)
 
 ## Resource
 
