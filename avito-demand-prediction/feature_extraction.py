@@ -215,10 +215,10 @@ with timer('Append category to desc / param to title'):
 
 
 with timer('Encoding categorical features'):
-	categorical_features = ['user_id', 'region', 'city', 'parent_category_name', 'category_name',
-							'user_type', 'image_top_1', 'param_1', 'param_2', 'param_3']
-	text_features = ['title', 'description']
-	lbl = LabelEncoder()
+    categorical_features = ['user_id', 'region', 'city', 'parent_category_name', 'category_name',
+                            'user_type', 'image_top_1', 'param_1', 'param_2', 'param_3']
+    text_features = ['title', 'description']
+    lbl = LabelEncoder()
     for c in categorical_features:
         df[c] = lbl.fit_transform(df[c].astype(str))
 
@@ -324,8 +324,8 @@ with timer('Groupby simple statistical features'):
 
 with timer('Categorical embedding features'):
 
-	cat1_list = ['user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'image_top_1', 'image_top_1']
-	cat2_list = ['category_name', 'param_1', 'image_top_1', 'city', 'param_2', 'param_3', 'param_1', 'category_name']
+    cat1_list = ['user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'image_top_1', 'image_top_1']
+    cat2_list = ['category_name', 'param_1', 'image_top_1', 'city', 'param_2', 'param_3', 'param_1', 'category_name']
 
 	for cat1, cat2 in zip(cat1_list, cat2_list):
 		df = add_emb_matrix(df, cat1, cat2, n=5, methpd='lda', post_fix='lda')
@@ -343,8 +343,7 @@ with timer('Process title and description'):
             vocab = pickle.load(f)
     else:
     	# Russian stopwords
-	    russian_stop = set(stopwords.words('russian'))
-
+        russian_stop = set(stopwords.words('russian'))
 	    tfidf_param = {
 	        'stop_words'   : russian_stop,
 	        'analyzer'     : 'word',
@@ -354,28 +353,28 @@ with timer('Process title and description'):
 	        'norm'         : 'l2',
 	        'smooth_idf'   : False
 	    }
-	    
-	    desc_features = 300000
-	    title_features = 100000
-	    
-	    vectorizer = FeatureUnion([
-	        ('description', TfidfVectorizer(
-	            ngram_range=(1, 3),
-	            max_features=desc_features,
-	            min_df=3,
-	            **tfidf_param,
-	            preprocessor=get_col('description'))),
-	        ('title', CountVectorizer(
-	            ngram_range=(1, 2), 
-	            stop_words=russian_stop,
-	            max_features=title_features,
-	            min_df=3,
-	            preprocessor=get_col('title')))
-	    ])
+        
+        desc_features = 300000
+        title_features = 100000
+        
+        vectorizer = FeatureUnion([
+            ('description', TfidfVectorizer(
+                ngram_range=(1, 3),
+                max_features=desc_features,
+                min_df=3,
+                **tfidf_param,
+                preprocessor=get_col('description'))),
+            ('title', CountVectorizer(
+                ngram_range=(1, 2), 
+                stop_words=russian_stop,
+                max_features=title_features,
+                min_df=3,
+                preprocessor=get_col('title')))
+            ])
 
-	    vectorizer.fit(df_reduced.to_dict('records'))
-	    df_text_processed = vectorizer.transform(df_reduced.to_dict('records'))
-	    vocab = vectorizer.get_feature_names()
+        vectorizer.fit(df_reduced.to_dict('records'))
+        df_text_processed = vectorizer.transform(df_reduced.to_dict('records'))
+        vocab = vectorizer.get_feature_names()
 
 with timer('Lda and nmf on title / description'):    
     if os.path.exists('desc_top_50_nmf.pkl'):
@@ -406,8 +405,7 @@ with timer('Add title lda and desc nmf to data'):
 
 
 with timer('Groupby price features'):
-	df_reduced['price'] = df_reduced['price'].apply(lambda x: np.log1p(x))
-    
+    df_reduced['price'] = df_reduced['price'].apply(lambda x: np.log1p(x))
     agg_config = [
     	(['region', 'city', 'dow'], [('price', 'mean'),
 				     ('price', 'median'),
@@ -493,10 +491,10 @@ with timer('Advanced text features'):
         df_reduced['title_desc_edit_dist'].to_csv('title_desc_edit_dist.csv', index=False)
 
 with timer('Feature selection'):
-	try:
-    	categorical_features.remove('user_id')
-	except:
-    	print('user_id already removed')
+    try:
+        categorical_features.remove('user_id')
+    except:
+        print('user_id already removed')
     
     # NEED TO BE IMPROVED
 	features = df_reduced.columns.tolist()
