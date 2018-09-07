@@ -323,10 +323,8 @@ with timer('Groupby simple statistical features'):
     df['user_param_1_count_ratio'] = df['user_param_1_count'] / df['user_item_unique']
 
 with timer('Categorical embedding features'):
-
-    cat1_list = ['user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'image_top_1', 'image_top_1']
-    cat2_list = ['category_name', 'param_1', 'image_top_1', 'city', 'param_2', 'param_3', 'param_1', 'category_name']
-
+	cat1_list = ['user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'image_top_1', 'image_top_1']
+	cat2_list = ['category_name', 'param_1', 'image_top_1', 'city', 'param_2', 'param_3', 'param_1', 'category_name']
 	for cat1, cat2 in zip(cat1_list, cat2_list):
 		df = add_emb_matrix(df, cat1, cat2, n=5, methpd='lda', post_fix='lda')
 		df = add_emb_matrix(df, cat1, cat2, n=5, method='nmf', post_fix='nmf')
@@ -403,7 +401,6 @@ with timer('Add title lda and desc nmf to data'):
     df_reduced = pd.concat([df_reduced, pd.DataFrame(title_top_50, columns=[title_lda_features])], axis=1)
     df_reduced.columns = df_reduced_columns_before + desc_nmf_features + title_lda_features
 
-
 with timer('Groupby price features'):
     df_reduced['price'] = df_reduced['price'].apply(lambda x: np.log1p(x))
     agg_config = [
@@ -476,7 +473,6 @@ with timer('Groupby price features'):
             if agg_pair[0] == ['region', 'city', 'parent_category_name', 'category_name']:
             	df_reduced[new_col + '_diff'] = df_reduced[new_col] - df_reduced['price']
 
-
 with timer('Advanced text features'):
 	# Title desc similarity features
     df_reduced['title_desc_cos_dist'] = paired_cosine_distances(df_reduced[title_lda_features], df_reduced[desc_nmf_features])
@@ -496,15 +492,13 @@ with timer('Feature selection'):
     except:
         print('user_id already removed')
     
-    # NEED TO BE IMPROVED
+	# NEED TO BE IMPROVED
 	features = df_reduced.columns.tolist()
 	features.remove('deal_probability')
 	features.remove('item_id')
-	
 	features.remove('emb_user_id_param_3_2_nmf')
 	features.remove('emb_user_id_param_3_3_nmf')
 	features.remove('desc_nmf_1')
-
 	target = 'deal_probability'
 	print('number of features =', len(features))
 
