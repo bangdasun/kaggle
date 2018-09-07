@@ -67,17 +67,17 @@ def merge_emb_df(df, emb_matrix, cat1, cat2, cat1_list, post_fix=''):
 
 def add_emb_matrix(df, cat1, cat2, n, method, post_fix):
     # get embedding matrix could take long time, save it when finish and read it when use it
-	filename = 'emb_{}_{}_features.csv'.format(cat1, cat2)
-	if os.path.exists(filename):
-		emb = pd.read_csv(filename)
-		df = pd.concat([df, emb], axis=1)
-		emb_features = ['emb_{}_{}_{}'.format(cat1, cat2, i) for i in range(1, n + 1)]
-	else:
-		user_cat_emb, cat1_list = get_categorical_emb(df, cat1, cat2, n, method)
-		df = merge_emb_df(df, user_cat_emb, cat1, cat2, cat1_list, post_fix)
-		emb_features = ['emb_{}_{}_{}'.format(cat1, cat2, i) for i in range(1, n + 1)]
-		df[emb_features[-n:]].to_csv(filename, index=False)
-	return df
+    filename = 'emb_{}_{}_features.csv'.format(cat1, cat2)
+    if os.path.exists(filename):
+        emb = pd.read_csv(filename)
+        df = pd.concat([df, emb], axis=1)
+        emb_features = ['emb_{}_{}_{}'.format(cat1, cat2, i) for i in range(1, n + 1)]
+    else:
+        user_cat_emb, cat1_list = get_categorical_emb(df, cat1, cat2, n, method)
+        df = merge_emb_df(df, user_cat_emb, cat1, cat2, cat1_list, post_fix)
+        emb_features = ['emb_{}_{}_{}'.format(cat1, cat2, i) for i in range(1, n + 1)]
+        df[emb_features[-n:]].to_csv(filename, index=False)
+    return df
 
 
 def dameraulevenshtein(seq1, seq2):
@@ -152,7 +152,6 @@ def apply_w2v(sentences, model, num_features):
 
 
 def merge_target_cluster(df, category, target, ntrain):
-    
     gp = df.iloc[:ntrain].loc[:, [category, target]].groupby(category)[target]
     hist = gp.agg(lambda x: ' '.join(str(x)))
     gp_index = hist.index
@@ -172,15 +171,15 @@ def merge_target_cluster(df, category, target, ntrain):
 # ============================================
 
 with timer('Load data'):
-	train = pd.read_csv('train.csv.zip', parse_dates = ["activation_date"])
-	test = pd.read_csv('test.csv.zip', parse_dates = ["activation_date"])
-	ntrain = train.shape[0]
-	ntest = test.shape[0]
-	train['num_na'] = train.isnull().sum(axis=1)
-	test['num_na'] = test.isnull().sum(axis=1)
-	df = pd.concat([train, test], axis=0)
-	del train, test
-	gc.collect()
+    train = pd.read_csv('train.csv.zip', parse_dates = ["activation_date"])
+    test = pd.read_csv('test.csv.zip', parse_dates = ["activation_date"])
+    ntrain = train.shape[0]
+    ntest = test.shape[0]
+    train['num_na'] = train.isnull().sum(axis=1)
+    test['num_na'] = test.isnull().sum(axis=1)
+    df = pd.concat([train, test], axis=0)
+    del train, test
+    gc.collect()
 
 with timer('Simple feature engineering'):
     df['dow'] = df['activation_date'].dt.weekday
@@ -323,11 +322,11 @@ with timer('Groupby simple statistical features'):
     df['user_param_1_count_ratio'] = df['user_param_1_count'] / df['user_item_unique']
 
 with timer('Categorical embedding features'):
-	cat1_list = ['user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'image_top_1', 'image_top_1']
-	cat2_list = ['category_name', 'param_1', 'image_top_1', 'city', 'param_2', 'param_3', 'param_1', 'category_name']
-	for cat1, cat2 in zip(cat1_list, cat2_list):
-		df = add_emb_matrix(df, cat1, cat2, n=5, methpd='lda', post_fix='lda')
-		df = add_emb_matrix(df, cat1, cat2, n=5, method='nmf', post_fix='nmf')
+    cat1_list = ['user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'user_id', 'image_top_1', 'image_top_1']
+    cat2_list = ['category_name', 'param_1', 'image_top_1', 'city', 'param_2', 'param_3', 'param_1', 'category_name']
+    for cat1, cat2 in zip(cat1_list, cat2_list):
+        df = add_emb_matrix(df, cat1, cat2, n=5, methpd='lda', post_fix='lda')
+        df = add_emb_matrix(df, cat1, cat2, n=5, method='nmf', post_fix='nmf')
 
 with timer('Reduce df to df_reduced'):
     df_reduced = reduce_mem_usage(df.iloc[:, 1:])
@@ -474,7 +473,7 @@ with timer('Groupby price features'):
             	df_reduced[new_col + '_diff'] = df_reduced[new_col] - df_reduced['price']
 
 with timer('Advanced text features'):
-	# Title desc similarity features
+    # Title desc similarity features
     df_reduced['title_desc_cos_dist'] = paired_cosine_distances(df_reduced[title_lda_features], df_reduced[desc_nmf_features])
     df_reduced['title_desc_mah_dist'] = paired_manhattan_distances(df_reduced[title_lda_features], df_reduced[desc_nmf_features])
     df_reduced['title_desc_eud_dist'] = paired_euclidean_distances(df_reduced[title_lda_features], df_reduced[desc_nmf_features])
@@ -492,27 +491,27 @@ with timer('Feature selection'):
     except:
         print('user_id already removed')
     
-	# NEED TO BE IMPROVED
-	features = df_reduced.columns.tolist()
-	features.remove('deal_probability')
-	features.remove('item_id')
-	features.remove('emb_user_id_param_3_2_nmf')
-	features.remove('emb_user_id_param_3_3_nmf')
-	features.remove('desc_nmf_1')
-	target = 'deal_probability'
-	print('number of features =', len(features))
+    # NEED TO BE IMPROVED
+    features = df_reduced.columns.tolist()
+    features.remove('deal_probability')
+    features.remove('item_id')
+    features.remove('emb_user_id_param_3_2_nmf')
+    features.remove('emb_user_id_param_3_3_nmf')
+    features.remove('desc_nmf_1')
+    target = 'deal_probability'
+    print('number of features =', len(features))
 
 with open('vocab.pkl', 'wb') as f:
-	pickle.dump(vocab, f)
+    pickle.dump(vocab, f)
 
 with open('tfidf.pkl', 'wb') as f:
-	pickle.dump(df_text_processed, f)
+    pickle.dump(df_text_processed, f)
 
 with open('features.pkl', 'wb') as f:
-	pickle.dump(features, f)
+    pickle.dump(features, f)
 
 with open('categorical_features.pkl', 'wb') as f:
-	pickle.dump(categorical_features, f)
+    pickle.dump(categorical_features, f)
 
 with open('df_reduced.pkl', 'wb') as f:
-	pickle.dump(df_reduced, f)
+    pickle.dump(df_reduced, f)
