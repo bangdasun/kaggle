@@ -66,7 +66,7 @@ def merge_emb_df(df, emb_matrix, cat1, cat2, cat1_list, post_fix=''):
 
 
 def add_emb_matrix(df, cat1, cat2, n, method, post_fix):
-	# get embedding matrix could take long time, save it when finish and read it when use it
+    # get embedding matrix could take long time, save it when finish and read it when use it
 	filename = 'emb_{}_{}_features.csv'.format(cat1, cat2)
 	if os.path.exists(filename):
 		emb = pd.read_csv(filename)
