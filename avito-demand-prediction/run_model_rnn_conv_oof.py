@@ -17,6 +17,9 @@ from sklearn.model_selection import train_test_split, KFold
 def root_mean_squared_error(y_true, y_pred):
     return K.sqrt(K.mean(K.square(y_pred - y_true)))
 
+def get_coefs(word, *arr): 
+    return word, np.asarray(arr, dtype='float32')
+
 def build_model():
     inp = Input(shape = (maxlen, ))
     emb = Embedding(nb_words, embed_size, weights = [embedding_matrix],
@@ -35,6 +38,7 @@ def build_model():
                   metrics =[root_mean_squared_error])
     model.summary()
     return model
+
 
 # Could use self-trained embeddings: https://www.kaggle.com/christofhenkel/self-trained-embeddings-starter-only-description
 EMBEDDING_FILE = '../input/fasttest-common-crawl-russian/cc.ru.300.vec'
@@ -64,9 +68,6 @@ tokenizer.fit_on_texts(list(train['description'].fillna('NA').values))
 
 
 print('getting embeddings')
-def get_coefs(word, *arr): 
-    return word, np.asarray(arr, dtype='float32')
-
 embeddings_index = dict(get_coefs(*o.rstrip().rsplit(' ')) for o in tqdm(open(EMBEDDING_FILE)))
 
 word_index = tokenizer.word_index
@@ -111,8 +112,7 @@ for n_fold, (trn_idx, val_idx) in enumerate(folds.split(train['description'].val
     
     X_valid = train['description'].iloc[val_idx].values
     y_valid = labels['deal_probability'].iloc[val_idx].values
-    
-    
+      
     print('convert to sequences')
     X_train = tokenizer.texts_to_sequences(X_train)
     X_valid = tokenizer.texts_to_sequences(X_valid)
@@ -135,12 +135,10 @@ for n_fold, (trn_idx, val_idx) in enumerate(folds.split(train['description'].val
     oof_preds.append(oof_preds_df) 
     print('RMSE:', np.sqrt(metrics.mean_squared_error(y_valid, oof_prediction)))
 
-
     prediction = model.predict(X_test,  batch_size = 128, verbose = 2)
     prediction = np.clip(prediction, 0.0, 1.0)
 
     submission.loc[:, 'deal_probability_{}'.format(n_fold+1)] = prediction
-
 
 submission.to_csv('rnn_conv_sub_preds.csv')
 
