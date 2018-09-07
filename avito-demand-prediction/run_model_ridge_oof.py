@@ -51,21 +51,21 @@ def get_oof(clf, x_train, y, x_test):
 # ============================================
 
 with open('features.pkl', 'rb') as f:
-	features = pickle.load(f)
+    features = pickle.load(f)
 
 with open('tfidf.pkl', 'rb') as f:
-	df_text_processed = pickle.load(f)
+    df_text_processed = pickle.load(f)
 
 with open('df_reduced.pkl', 'rb') as f:
-	df_reduced = pickle.load(f)
+    df_reduced = pickle.load(f)
 
 with timer('Load data'):
-	train = pd.read_csv('train.csv.zip', parse_dates = ["activation_date"])
-	test = pd.read_csv('test.csv.zip', parse_dates = ["activation_date"])
-	ntrain = train.shape[0]
-	ntest = test.shape[0]
-	del train, test
-	gc.collect()
+    train = pd.read_csv('train.csv.zip', parse_dates = ["activation_date"])
+    test = pd.read_csv('test.csv.zip', parse_dates = ["activation_date"])
+    ntrain = train.shape[0]
+    ntest = test.shape[0]
+    del train, test
+    gc.collect()
 
 with timer('Training ridge oof preds'):
     y_train_all = df_reduced['deal_probability'].iloc[:ntrain]
@@ -95,7 +95,7 @@ with timer('Training ridge oof preds'):
         features.append('ridge_preds')
 
 with open('features.pkl', 'wb') as f:
-	pickle.dump(features, f)
+    pickle.dump(features, f)
 
 with open('df_reduced.pkl', 'wb') as f:
-	pickle.dump(df_reduced, f)
+    pickle.dump(df_reduced, f)
