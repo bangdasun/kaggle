@@ -10,19 +10,19 @@ from kaggle_learn.utils import timer
 
 
 with open('vocab.pkl', 'rb') as f:
-	vocab = pickle.load(f)
+    vocab = pickle.load(f)
 
 with open('tfidf.pkl', 'rb') as f:
-	df_text_processed = pickle.load(f)
+    df_text_processed = pickle.load(f)
 
 with open('features.pkl', 'rb') as f:
-	features = pickle.load(f)
+    features = pickle.load(f)
 
 with open('categorical_features.pkl', 'rb') as f:
-	categorical_features = pickle.load(f)
+    categorical_features = pickle.load(f)
 
 with open('df_reduced.pkl', 'rb') as f:
-	df_reduced = pickle.load(f)
+    df_reduced = pickle.load(f)
 
 with timer('Prepare for lightgbm'):
     
