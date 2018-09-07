@@ -65,13 +65,14 @@ tokenizer.fit_on_texts(list(train['description'].fillna('NA').values))
 
 print('getting embeddings')
 def get_coefs(word, *arr): 
-	return word, np.asarray(arr, dtype='float32')
+    return word, np.asarray(arr, dtype='float32')
 
 embeddings_index = dict(get_coefs(*o.rstrip().rsplit(' ')) for o in tqdm(open(EMBEDDING_FILE)))
 
 word_index = tokenizer.word_index
 nb_words = min(max_features, len(word_index))
 embedding_matrix = np.zeros((nb_words, embed_size))
+
 for word, i in tqdm(word_index.items()):
     if i >= max_features: continue
     embedding_vector = embeddings_index.get(word)
