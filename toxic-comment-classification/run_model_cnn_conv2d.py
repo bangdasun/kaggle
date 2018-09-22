@@ -154,9 +154,9 @@ def build_model(X_train, Y_train, X_valid, Y_valid, batch_size, epochs):
                   metrics=['accuracy'])
 			
     RocAuc = RocAucEvaluation(validation_data=(X_valid, Y_valid), interval=1)
-	model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs,
+    model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs,
               validation_data=(X_valid, Y_valid), callbacks=[RocAuc], verbose=2)
-	return model
+    return model
 
 
 # -----------------

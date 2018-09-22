@@ -129,10 +129,10 @@ def build_model(X_train, Y_train, X_valid, Y_valid, lr=0.0, lr_d=0.0, units=0, d
     inp = Input(shape=(max_len,))
     x = Embedding(max_features, embed_size, weights=[embedding_matrix])(inp)
     x = SpatialDropout1D(0.2)(x)
-	# GRU could be replaced by LSTM
+    # GRU could be replaced by LSTM
     x = Bidirectional(GRU(80, return_sequences=True))(x)
-	# could remove the Conv1D layer
-	x = Conv1D(64, kernel_size=3, padding='valid', kernel_initializer='glorot_uniform')(x)
+    # could remove the Conv1D layer
+    x = Conv1D(64, kernel_size=3, padding='valid', kernel_initializer='glorot_uniform')(x)
     avg_pool = GlobalAveragePooling1D()(x)
     max_pool = GlobalMaxPooling1D()(x)
     x = concatenate([avg_pool, max_pool])
@@ -160,7 +160,7 @@ for n_fold, (trn_idx, val_idx) in enumerate(folds.split(X_train_all)):
     X_train, X_valid = X_train_all[trn_idx], X_train_all[val_idx]
     Y_train, Y_valid = y[trn_idx], y[val_idx]
 	
-	# define callbacks
+    # define callbacks
     ra_val = RocAucEvaluation(validation_data=(X_valid, Y_valid), interval=1)
     
     print('\n------ Fold {} ------\n'.format(n_fold + 1))

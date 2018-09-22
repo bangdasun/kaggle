@@ -141,7 +141,7 @@ def build_model(X_train, Y_train, X_valid, Y_valid):
     emb_comment = Embedding(max_features, embed_size, weights=[embedding_matrix], trainable=train_embed)(comment)
     emb_comment = SpatialDropout1D(spatial_dropout)(emb_comment)
 	
-	# block 1
+    # block 1
     block1 = Conv1D(filter_nr, kernel_size=filter_size[0], padding='same', activation='linear')(emb_comment)
     block1 = BatchNormalization()(block1)
     block1 = PReLU()(block1)
@@ -155,7 +155,7 @@ def build_model(X_train, Y_train, X_valid, Y_valid):
     block1_output = add([block1, resize_emb])
     block1_output = MaxPooling1D(pool_size=max_pool_size, strides=max_pool_strides)(block1_output)
     
-	# block 2
+    # block 2
     block2 = Conv1D(filter_nr, kernel_size=filter_size[1], padding='same', activation='linear')(block1_output)
     block2 = BatchNormalization()(block2)
     block2 = PReLU()(block2)
@@ -177,7 +177,7 @@ def build_model(X_train, Y_train, X_valid, Y_valid):
     block3_output = add([block3, block2_output])
     block3_output = MaxPooling1D(pool_size=max_pool_size, strides=max_pool_strides)(block3_output)
     
-	# block 4
+    # block 4
     block4 = Conv1D(filter_nr, kernel_size=filter_size[3], padding='same', activation='linear')(block3_output)
     block4 = BatchNormalization()(block4)
     block4 = PReLU()(block4)
@@ -194,14 +194,14 @@ def build_model(X_train, Y_train, X_valid, Y_valid):
     output = Dense(6, activation='sigmoid')(output)
 	
     model = Model(comment, output)
-	model.compile(loss='binary_crossentropy', optimizer=optimizers.Adam(decay=1.5e-5), metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer=optimizers.Adam(decay=1.5e-5), metrics=['accuracy'])
     
 	lr = callbacks.LearningRateScheduler(schedule)
     ra_val = RocAucEvaluation(validation_data=(X_valid, Y_valid), interval = 1)
     
-	model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs, validation_data=(X_valid, Y_valid), 
+    model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs, validation_data=(X_valid, Y_valid), 
               callbacks = [lr, ra_val] ,verbose=1)
-	return model
+    return model
 	
 
 # -----------------
