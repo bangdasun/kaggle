@@ -9,14 +9,14 @@ https://www.kaggle.com/bangdasun
 * [Instacart market basket analysis](https://www.kaggle.com/c/instacart-market-basket-analysis)
 * [Toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge)
 * [TalkingData adtracking fraud detection challenge](https://www.kaggle.com/c/talkingdata-adtracking-fraud-detection)
-* [Home Credit Default Rish](https://www.kaggle.com/c/home-credit-default-risk)
+* [Home Credit default risk](https://www.kaggle.com/c/home-credit-default-risk)
 
 ### Regression
 * [House price prediction - advanced regression techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
 * [New York City taxi trip duration](https://www.kaggle.com/c/nyc-taxi-trip-duration)
 * [Mercari price suggestion challenge](https://www.kaggle.com/c/mercari-price-suggestion-challenge)
 * [Avito demand prediction challenge](https://www.kaggle.com/c/avito-demand-prediction/leaderboard)
-* [Santander Value Prediction Challenge](https://www.kaggle.com/c/santander-value-prediction-challenge)
+* [Santander value prediction challenge](https://www.kaggle.com/c/santander-value-prediction-challenge)
 
 ### Image Segmentation
 
