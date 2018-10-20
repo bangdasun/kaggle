@@ -18,6 +18,11 @@ https://www.kaggle.com/bangdasun
 * [Avito demand prediction challenge](https://www.kaggle.com/c/avito-demand-prediction/leaderboard)
 * [Santander Value Prediction Challenge](https://www.kaggle.com/c/santander-value-prediction-challenge)
 
+### Image Segmentation
+
+* [TGS salt identification challenge](https://www.kaggle.com/c/tgs-salt-identification-challenge)
+
+
 ## Resource
 
 ### General Information
