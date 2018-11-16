@@ -5,6 +5,7 @@ https://www.kaggle.com/bangdasun
 ## Competitions
 
 ### Classification 
+
 * [Titanic passenger survival prediction](https://www.kaggle.com/c/titanic)
 * [Instacart market basket analysis](https://www.kaggle.com/c/instacart-market-basket-analysis)
 * [Toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge)
@@ -18,9 +19,10 @@ https://www.kaggle.com/bangdasun
 * [Avito demand prediction challenge](https://www.kaggle.com/c/avito-demand-prediction/leaderboard)
 * [Santander value prediction challenge](https://www.kaggle.com/c/santander-value-prediction-challenge)
 
-### Image Segmentation
+### Image (Segmentation, Object Detection)
 
 * [TGS salt identification challenge](https://www.kaggle.com/c/tgs-salt-identification-challenge)
+* [Airbus ship detection challenge](https://www.kaggle.com/c/airbus-ship-detection)
 
 
 ## Resource

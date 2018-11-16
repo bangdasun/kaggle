@@ -6,7 +6,7 @@ This competitions is about [Image Segmentation](https://en.wikipedia.org/wiki/Im
 
 This is my first CV competition, due to limited time (join the competition 10 days before ending) and limited competition resource (only have laptops and no GPU / GCP credit), I have to start from kernels and discussions. I'm new to CV therefore there is a long way for me, this time I think learn to use keras / tensorflow / pytorch to implement neural nets is more important. I'll update competition summary when I have time.
 
-#### About My Solution (370/3291)
+#### About My Solution (344/3234)
 
 All my works are based on kernels and discussions, essentially I just do: hyper-parameter tuning / run 5-folds / ensemble and blending. Here are my reference kernels and discussions:
 
