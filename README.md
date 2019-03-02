@@ -4,25 +4,63 @@ https://www.kaggle.com/bangdasun
 
 ## Competitions
 
-### Classification 
+### Classification
 
-* [Titanic passenger survival prediction](https://www.kaggle.com/c/titanic)
-* [Instacart market basket analysis](https://www.kaggle.com/c/instacart-market-basket-analysis)
-* [Toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge)
-* [TalkingData adtracking fraud detection challenge](https://www.kaggle.com/c/talkingdata-adtracking-fraud-detection)
-* [Home Credit default risk](https://www.kaggle.com/c/home-credit-default-risk)
+* [Titanic passenger survival prediction](https://www.kaggle.com/c/titanic) 
+
+  \#binary, \#get started
+
+* [Instacart market basket analysis](https://www.kaggle.com/c/instacart-market-basket-analysis) 
+
+  \#binary, \#recommendation
+
+* [Toxic comment classification challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) 
+
+  \#multi-labels, \#NLP
+
+* [TalkingData adtracking fraud detection challenge](https://www.kaggle.com/c/talkingdata-adtracking-fraud-detection) 
+
+  \#binary, \#CTR
+
+* [Home Credit default risk](https://www.kaggle.com/c/home-credit-default-risk) 
+
+  \#binary, \#finance fraud detection
+
+* [Quora insincere questions classification](https://www.kaggle.com/c/quora-insincere-questions-classification) 
+
+  \#binary, \#NLP
 
 ### Regression
-* [House price prediction - advanced regression techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)
-* [New York City taxi trip duration](https://www.kaggle.com/c/nyc-taxi-trip-duration)
-* [Mercari price suggestion challenge](https://www.kaggle.com/c/mercari-price-suggestion-challenge)
-* [Avito demand prediction challenge](https://www.kaggle.com/c/avito-demand-prediction/leaderboard)
-* [Santander value prediction challenge](https://www.kaggle.com/c/santander-value-prediction-challenge)
 
-### Image (Segmentation, Object Detection)
+* [House price prediction - advanced regression techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) 
 
-* [TGS salt identification challenge](https://www.kaggle.com/c/tgs-salt-identification-challenge)
+  \#house price, \#get started
+
+* [New York City taxi trip duration](https://www.kaggle.com/c/nyc-taxi-trip-duration) 
+
+  \#trip duration, \#get started
+
+* [Mercari price suggestion challenge](https://www.kaggle.com/c/mercari-price-suggestion-challenge) 
+
+  \#price, \#e-commerce, \#NLP, \#recommendation
+
+* [Avito demand prediction challenge](https://www.kaggle.com/c/avito-demand-prediction/leaderboard) 
+
+  \#deal probability, \#e-commerce, \#NLP, \#CV, \#CTR
+
+* [Santander value prediction challenge](https://www.kaggle.com/c/santander-value-prediction-challenge) 
+
+  \#anonymous data, \#finance
+
+### Image 
+
+* [TGS salt identification challenge](https://www.kaggle.com/c/tgs-salt-identification-challenge) 
+
+  \#segmentation
+
 * [Airbus ship detection challenge](https://www.kaggle.com/c/airbus-ship-detection)
+
+  \#segmentation, \#object detection
 
 
 ## Resource

@@ -1,0 +1,47 @@
+[INFO]2019-02-14 02:45:04,027:quora-main:Start . . .
+[INFO]2019-02-14 02:45:07,581:quora-main:Cleaning text . . .
+[INFO]2019-02-14 02:46:46,859:quora-main:Cleaning text complete
+[INFO]2019-02-14 02:46:46,859:quora-main:Preprocessing for model . . .
+[INFO]2019-02-14 02:54:11,070:quora-main:embedding matrix shape: (200000, 300)
+[INFO]2019-02-14 02:54:11,070:quora-main:Preprocessing complete
+[INFO]2019-02-14 02:54:16,688:quora-main:Fold 1
+[INFO]2019-02-14 02:54:17,499:quora-main:Build model
+[INFO]2019-02-14 02:54:18,433:quora-main:Training . . .
+[INFO]2019-02-14 02:59:50,671:quora-main:Epoch 1/4 train_loss = 69.14545 val_loss = 51.95009 time = 332.24s
+[INFO]2019-02-14 03:05:22,679:quora-main:Epoch 2/4 train_loss = 57.09830 val_loss = 49.94023 time = 332.01s
+[INFO]2019-02-14 03:10:54,977:quora-main:Epoch 3/4 train_loss = 53.91380 val_loss = 49.34641 time = 332.30s
+[INFO]2019-02-14 03:16:27,111:quora-main:Epoch 4/4 train_loss = 50.99291 val_loss = 49.48029 time = 332.13s
+[INFO]2019-02-14 03:16:27,111:quora-main:Generating test predictions . . .
+[INFO]2019-02-14 03:17:00,769:quora-main:Fold 2
+[INFO]2019-02-14 03:17:01,691:quora-main:Build model
+[INFO]2019-02-14 03:17:02,796:quora-main:Training . . .
+[INFO]2019-02-14 03:22:34,617:quora-main:Epoch 1/4 train_loss = 69.32747 val_loss = 51.93849 time = 331.82s
+[INFO]2019-02-14 03:28:06,419:quora-main:Epoch 2/4 train_loss = 57.76411 val_loss = 49.88755 time = 331.80s
+[INFO]2019-02-14 03:33:38,272:quora-main:Epoch 3/4 train_loss = 54.18964 val_loss = 49.00218 time = 331.85s
+[INFO]2019-02-14 03:39:10,116:quora-main:Epoch 4/4 train_loss = 51.07638 val_loss = 49.59773 time = 331.84s
+[INFO]2019-02-14 03:39:10,116:quora-main:Generating test predictions . . .
+[INFO]2019-02-14 03:39:43,439:quora-main:Fold 3
+[INFO]2019-02-14 03:39:44,361:quora-main:Build model
+[INFO]2019-02-14 03:39:45,448:quora-main:Training . . .
+[INFO]2019-02-14 03:45:17,235:quora-main:Epoch 1/4 train_loss = 69.46407 val_loss = 51.59957 time = 331.79s
+[INFO]2019-02-14 03:50:49,093:quora-main:Epoch 2/4 train_loss = 57.57157 val_loss = 49.29476 time = 331.86s
+[INFO]2019-02-14 03:56:20,922:quora-main:Epoch 3/4 train_loss = 54.45305 val_loss = 49.19071 time = 331.82s
+[INFO]2019-02-14 04:01:52,702:quora-main:Epoch 4/4 train_loss = 51.07308 val_loss = 48.53764 time = 331.78s
+[INFO]2019-02-14 04:01:52,702:quora-main:Generating test predictions . . .
+[INFO]2019-02-14 04:02:25,898:quora-main:Fold 4
+[INFO]2019-02-14 04:02:26,806:quora-main:Build model
+[INFO]2019-02-14 04:02:27,891:quora-main:Training . . .
+[INFO]2019-02-14 04:07:59,669:quora-main:Epoch 1/4 train_loss = 69.65041 val_loss = 51.42596 time = 331.78s
+[INFO]2019-02-14 04:13:31,605:quora-main:Epoch 2/4 train_loss = 57.30565 val_loss = 49.49642 time = 331.94s
+[INFO]2019-02-14 04:19:03,409:quora-main:Epoch 3/4 train_loss = 54.08148 val_loss = 48.50743 time = 331.80s
+[INFO]2019-02-14 04:24:35,293:quora-main:Epoch 4/4 train_loss = 50.95038 val_loss = 49.12389 time = 331.88s
+[INFO]2019-02-14 04:24:35,293:quora-main:Generating test predictions . . .
+[INFO]2019-02-14 04:25:08,497:quora-main:Fold 5
+[INFO]2019-02-14 04:25:09,420:quora-main:Build model
+[INFO]2019-02-14 04:25:10,497:quora-main:Training . . .
+[INFO]2019-02-14 04:30:42,363:quora-main:Epoch 1/4 train_loss = 69.18860 val_loss = 51.99929 time = 331.87s
+[INFO]2019-02-14 04:36:14,179:quora-main:Epoch 2/4 train_loss = 57.26018 val_loss = 49.83814 time = 331.82s
+[INFO]2019-02-14 04:41:45,977:quora-main:Epoch 3/4 train_loss = 54.12830 val_loss = 49.06484 time = 331.80s
+[INFO]2019-02-14 04:47:17,881:quora-main:Epoch 4/4 train_loss = 50.76193 val_loss = 50.13781 time = 331.90s
+[INFO]2019-02-14 04:47:17,882:quora-main:Generating test predictions . . .
+[INFO]2019-02-14 04:50:15,912:quora-main:search result: {'threshold': 0.305, 'f1': 0.6915186992242818}
