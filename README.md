@@ -52,6 +52,10 @@ https://www.kaggle.com/bangdasun
 
   \#anonymous data, \#finance
 
+* [Elo merchant category recommendation](https://www.kaggle.com/c/elo-merchant-category-recommendation)
+
+  \#loyalty score, \#banking, \#business
+
 ### Image 
 
 * [TGS salt identification challenge](https://www.kaggle.com/c/tgs-salt-identification-challenge) 
