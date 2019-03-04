@@ -2,7 +2,7 @@
 
 #### Competition Introduction
 
-See my zhihu article: TBD
+See my zhihu article: [Kaggle竞赛-Elo Merchant Category Recommendation小结](https://zhuanlan.zhihu.com/p/58231255)
 
 #### About My Solution (28/4128)
 

@@ -2,7 +2,7 @@
 
 #### Competition Introduction
 
-See my zhihu article: TBD
+See my zhihu article: [Kaggle竞赛-Quora Insincere Question Classification小结](https://zhuanlan.zhihu.com/p/58203555)
 
 #### About Our Solution (76/4037)
 
