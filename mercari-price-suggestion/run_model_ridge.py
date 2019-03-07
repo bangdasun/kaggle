@@ -355,7 +355,7 @@ class DropColumnsByDf(BaseEstimator, TransformerMixin):
 def brands_filling(df, logger):
     vc = df['brand_name'].value_counts()
     brands = vc[vc > 0].index
-    brand_word = r"[a-z0-9*/+\-'��??!.,|&%???�֧֧֧է֨g]+"
+    brand_word = r"[a-z0-9*/+\-'§¡??!.,|&%???§Ö§Ö§Ö§Õ§Ö¨g]+"
 
     many_w_brands = brands[brands.str.contains(' ')]
     one_w_brands = brands[~brands.str.contains(' ')]
@@ -366,7 +366,7 @@ def brands_filling(df, logger):
     ss1 = SymSpell(max_edit_distance=0)
     ss1.create_dictionary_from_arr(one_w_brands, token_pattern=r'.+')
 
-    two_words_re = re.compile(r"(?=(\s[a-z0-9*/+\-'��??!.,|&%???�֧֧֧է֨g]+\s[a-z0-9*/+\-'��??!.,|&%???�֧֧֧է֨g]+))")
+    two_words_re = re.compile(r"(?=(\s[a-z0-9*/+\-'§¡??!.,|&%???§Ö§Ö§Ö§Õ§Ö¨g]+\s[a-z0-9*/+\-'§¡??!.,|&%???§Ö§Ö§Ö§Õ§Ö¨g]+))")
 
     def find_in_str_ss2(row):
         for doc_word in two_words_re.finditer(row):
@@ -393,11 +393,11 @@ def brands_filling(df, logger):
     logger.info(f"Before empty brand_name: {len(df[df['brand_name'] == ''].index)}")
 
     n_name = df[df['brand_name'] == '']['name'].str.findall(
-        pat=r"^[a-z0-9*/+\-'��??!.,|&%???�֧֧֧է֨g]+\s[a-z0-9*/+\-'��??!.,|&%???�֧֧֧է֨g]+")
+        pat=r"^[a-z0-9*/+\-'§¡??!.,|&%???§Ö§Ö§Ö§Õ§Ö¨g]+\s[a-z0-9*/+\-'§¡??!.,|&%???§Ö§Ö§Ö§Õ§Ö¨g]+")
     df.loc[df['brand_name'] == '', 'brand_name'] = [find_in_list_ss2(row) for row in n_name]
 
     n_desc = df[df['brand_name'] == '']['item_description'].str.findall(
-        pat=r"^[a-z0-9*/+\-'��??!.,|&%???�֧֧֧է֨g]+\s[a-z0-9*/+\-'��??!.,|&%???�֧֧֧է֨g]+")
+        pat=r"^[a-z0-9*/+\-'§¡??!.,|&%???§Ö§Ö§Ö§Õ§Ö¨g]+\s[a-z0-9*/+\-'§¡??!.,|&%???§Ö§Ö§Ö§Õ§Ö¨g]+")
     df.loc[df['brand_name'] == '', 'brand_name'] = [find_in_list_ss2(row) for row in n_desc]
 
     n_name = df[df['brand_name'] == '']['name'].str.findall(pat=brand_word)
@@ -530,6 +530,7 @@ def main(test, logger):
     stopwords = frozenset(['the', 'a', 'an', 'is', 'it', 'this', ])
     
     vectorizer = FeatureUnion([
+        # pipeline: processing name
         ('name', Pipeline([
             ('select', ItemSelector('name', start_time=start_time)),
             ('transform', HashingVectorizer(
@@ -541,6 +542,8 @@ def main(test, logger):
             )),
             ('drop_cols', DropColumnsByDf(min_df=2))
         ])),
+        
+        # pipeline: process category_name
         ('category_name', Pipeline([
             ('select', ItemSelector('category_name', start_time=start_time)),
             ('transform', HashingVectorizer(
@@ -553,6 +556,8 @@ def main(test, logger):
             )),
             ('drop_cols', DropColumnsByDf(min_df=2))
         ])),
+        
+        # pipeline: process brand_name
         ('brand_name', Pipeline([
             ('select', ItemSelector('brand_name', start_time=start_time)),
             ('transform', CountVectorizer(
@@ -561,6 +566,8 @@ def main(test, logger):
                 lowercase=False
             )),
         ])),
+        
+        # pipeline: process condition
         ('gencat_cond', Pipeline([
             ('select', ItemSelector('gencat_cond', start_time=start_time)),
             ('transform', CountVectorizer(
@@ -569,6 +576,8 @@ def main(test, logger):
                 lowercase=False
             )),
         ])),
+        
+        # pipeline: process subcategory_1 + condition
         ('subcat_1_cond', Pipeline([
             ('select', ItemSelector('subcat_1_cond', start_time=start_time)),
             ('transform', CountVectorizer(
@@ -577,6 +586,8 @@ def main(test, logger):
                 lowercase=False
             )),
         ])),
+        
+        # pipeline: process subcategory_2 + condition
         ('subcat_2_cond', Pipeline([
             ('select', ItemSelector('subcat_2_cond', start_time=start_time)),
             ('transform', CountVectorizer(
@@ -585,18 +596,26 @@ def main(test, logger):
                 lowercase=False
             )),
         ])),
+        
+        # pipeline: process has_brand
         ('has_brand', Pipeline([
             ('select', ItemSelector('has_brand', start_time=start_time)),
             ('ohe', OneHotEncoder())
         ])),
+        
+        # pipeline: process shipping
         ('shipping', Pipeline([
             ('select', ItemSelector('shipping', start_time=start_time)),
             ('ohe', OneHotEncoder())
         ])),
+        
+        # pipeline: process condition
         ('item_condition_id', Pipeline([
             ('select', ItemSelector('item_condition_id', start_time=start_time)),
             ('ohe', OneHotEncoder())
         ])),
+        
+        # pipeline: item_description
         ('item_description', Pipeline([
             ('select', ItemSelector('item_description', start_time=start_time)),
             ('hash', HashingVectorizer(
