@@ -122,7 +122,7 @@ local F1 CV都没有超过上面结构.
 
 **模型训练**: 在sequences padding中使用bucketing, 和第1/2名的动态sequences padding原理类似.
 
-### (6) 第10名 (tks)
+#### (6) 第10名 (tks)
 
 原贴: [10th place solution - Meta embedding, EMA, Ensemble](https://www.kaggle.com/c/quora-insincere-questions-classification/discussion/80718)
 
